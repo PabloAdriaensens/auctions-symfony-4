@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\BidRepository;
 use Doctrine\ORM\Mapping as ORM;
+use DateTime;
 
 /**
  * @ORM\Entity(repositoryClass=BidRepository::class)
@@ -18,12 +19,12 @@ class Bid
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="bids")
      */
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Auction::class, inversedBy="bids")
+     * @ORM\ManyToOne(targetEntity="Auction", inversedBy="bids")
      */
     private $auction;
 
@@ -36,6 +37,14 @@ class Bid
      * @ORM\Column(type="datetime")
      */
     private $dateTime;
+
+    /**
+     * Bid constructor.
+     */
+    public function __construct()
+    {
+        $this->dateTime = new DateTime();
+    }
 
     public function getId(): ?int
     {

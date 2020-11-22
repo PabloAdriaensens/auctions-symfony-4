@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+
+                <h1>Current auctions</h1>
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Initial price</th>
+                        <th>My bid</th>
+                        <th>actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for auction in auctions %}
+                        <tr>
+                            <td>{{ auction.image }}</td>
+                            <td>{{ auction.name }}</td>
+                            <td>{{ auction.description }}</td>
+                            <td>{{ auction.initialPrice }}€</td>
+                            {#<td>{{ auction.finalBid }}€</td>#}
+                            <td>-</td>
+                            <td>
+                                {# Editar puja #}
+                                <a class="mr-5" href="{{ path('auction_edit', {'id': auction.id}) }}">Bid up</a>
+
+                                {# Eliminar puja #}
+                                <a href="{{ path('auction_delete', {'id': auction.id}) }}">Delete bid</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="7">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

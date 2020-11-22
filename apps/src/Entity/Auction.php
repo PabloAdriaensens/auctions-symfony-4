@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AuctionRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -45,9 +47,14 @@ class Auction
     private $finalBid;
 
     /**
-     * @ORM\OneToMany(targetEntity=Bid::class, mappedBy="auction")
+     * @ORM\OneToMany(targetEntity="Bid", mappedBy="auction")
      */
     private $bids;
+
+    public function __construct()
+    {
+        $this->bids = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -110,18 +117,6 @@ class Auction
     public function setFinalBid(float $finalBid): self
     {
         $this->finalBid = $finalBid;
-
-        return $this;
-    }
-
-    public function getBids(): ?string
-    {
-        return $this->bids;
-    }
-
-    public function setBids(string $bids): self
-    {
-        $this->bids = $bids;
 
         return $this;
     }

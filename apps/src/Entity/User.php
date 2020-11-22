@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -38,6 +40,20 @@ class User implements UserInterface
      */
     private $password;
 
+    /**
+     * @var Collection
+     * @ORM\OneToMany(targetEntity="Bid" ,mappedBy="user")
+     */
+    private $bids;
+
+    /**
+     * User constructor.
+     */
+    public function __construct()
+    {
+        $this->bids = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -62,7 +78,7 @@ class User implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->email;
+        return (string)$this->email;
     }
 
     /**
