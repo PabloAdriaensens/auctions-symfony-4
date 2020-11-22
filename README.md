@@ -43,6 +43,12 @@ Run webpack
 $ yarn run encore dev --watch
 ```
 
+Project url
+
+```sh
+http://localhost:8080/
+```
+
 ### Users
 
 Dillinger is currently extended with the following plugins. Instructions on how to use them in your own application are linked below.
