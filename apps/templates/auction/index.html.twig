@@ -25,8 +25,16 @@
                         <tr>
                             <td>{{ auction.id }}</td>
                             <td>{{ auction.name }}</td>
-                            <td>{{ auction.description }}</td>
-                            <td>{{ auction.image }}</td>
+                            {% if auction.description == NULL %}
+                                <td>-</td>
+                            {% else %}
+                                <td>{{ auction.description }}</td>
+                            {% endif %}
+                            {% if auction.image == NULL %}
+                                <td>-</td>
+                            {% else %}
+                                <td>{{ auction.image }}</td>
+                            {% endif %}
                             <td>{{ auction.initialPrice }}€</td>
                             <td>{{ auction.finalBid }}€</td>
                             <td>

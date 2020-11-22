@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Auction;
 use App\Form\AuctionType;
 use App\Repository\AuctionRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,6 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/auction")
+ * @IsGranted("ROLE_ADMIN")
  */
 class AuctionController extends AbstractController
 {

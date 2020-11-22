@@ -21,18 +21,23 @@
                     <tbody>
                     {% for auction in auctions %}
                         <tr>
-                            <td>{{ auction.image }}</td>
+                            {% if auction.image == NULL %}
+                                <td>-</td>
+                            {% else %}
+                                <td>{{ auction.image }}</td>
+                            {% endif %}
                             <td>{{ auction.name }}</td>
-                            <td>{{ auction.description }}</td>
+                            {% if auction.description == NULL %}
+                                <td>-</td>
+                            {% else %}
+                                <td>{{ auction.description }}</td>
+                            {% endif %}
                             <td>{{ auction.initialPrice }}€</td>
-                            {#<td>{{ auction.finalBid }}€</td>#}
-                            <td>-</td>
+                            <td style="width:100px"><input type="text" id="bidUp{{ auction.id }}" placeholder="Bid Up" style="width: 60px" onkeyup='saveValue(this);'/> €</td>
                             <td>
-                                {# Editar puja #}
-                                <a class="mr-5" href="{{ path('auction_edit', {'id': auction.id}) }}">Bid up</a>
+                                <button class="btn btn-outline-primary" onClick="window.location.reload();">Bid Up</button>
 
-                                {# Eliminar puja #}
-                                <a href="{{ path('auction_delete', {'id': auction.id}) }}">Delete bid</a>
+                                <button class="btn btn-outline-danger mt-3" onClick="window.location.reload(); localStorage.clear();">Remove Bid</button>
                             </td>
                         </tr>
                     {% else %}
@@ -40,6 +45,7 @@
                             <td colspan="7">no records found</td>
                         </tr>
                     {% endfor %}
+
                     </tbody>
                 </table>
             </div>

@@ -20,11 +20,19 @@
                     </tr>
                     <tr>
                         <th>Description</th>
-                        <td>{{ auction.description }}</td>
+                        {% if auction.description == NULL %}
+                            <td>-</td>
+                        {% else %}
+                            <td>{{ auction.description }}</td>
+                        {% endif %}
                     </tr>
                     <tr>
                         <th>Image</th>
-                        <td>{{ auction.image }}</td>
+                        {% if auction.image == NULL %}
+                            <td>-</td>
+                        {% else %}
+                            <td>{{ auction.image }}</td>
+                        {% endif %}
                     </tr>
                     <tr>
                         <th>InitialPrice</th>
