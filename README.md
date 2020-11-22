@@ -16,21 +16,24 @@ Dillinger uses a number of open source projects to work properly:
 
 Clone the project
 
-1. Create a folder
+1. cd your Project folder
 2. Clone the repository: https://github.com/PabloAdriaensens/auctions-symfony-4
 
 Start containers
 
 ```sh
-$ docker-compose build
-$ docker-compose up -d
+$ docker-compose up --build
+$ docker-compose up --build -d
 ```
 
 Access into php container and execute:
 
 ```sh
+$ docker ps -a
+$ docker exec -it php_CONTAINER_ID bash
+$ composer install
 $ ./bin/console doctrine:database:create
-$ ./bin/console doctrine:migrations:migrate
+$ ./bin/console doctrine:schema:update --force
 $ ./bin/console doctrine:fixtures:load
 ```
 
