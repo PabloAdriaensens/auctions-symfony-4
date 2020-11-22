@@ -14,16 +14,17 @@ class AuctionType extends AbstractType
         $builder
             ->add('name')
             ->add('description')
-            ->add('image')
+            ->add('image', null, ['data_class' => null], ["attr" => [], 'required' => false])
             ->add('initialPrice')
-            ->add('finalBid')
-        ;
+            ->add('finalBid');
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
-            'data_class' => Auction::class,
-        ]);
+        $resolver->setDefaults(
+            [
+                'data_class' => Auction::class,
+            ]
+        );
     }
 }

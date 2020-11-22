@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\AuctionRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=AuctionRepository::class)
@@ -29,6 +30,7 @@ class Auction
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\File(mimeTypes={ "image/jpeg" , "image/png" , "image/tiff" , "image/svg+xml"})
      */
     private $image;
 
